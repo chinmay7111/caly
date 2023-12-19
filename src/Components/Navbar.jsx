@@ -1,7 +1,9 @@
-import React from 'react'
 import "bootstrap/dist/css/bootstrap.min.css"
 
 const Navbar = () => {
+  
+
+
   return (
 <>
 <nav className="navbar navbar-expand-lg bg-body-tertiary">
@@ -16,19 +18,16 @@ const Navbar = () => {
           <p className="nav-link active" aria-current="page" href="#">Home</p>
         </li>
         <li className="nav-item">
-          <p className="nav-link" href="#">Link</p>
+          <p className="nav-link" href="#">Contact</p>
         </li>
         <li className="nav-item">
-          <p className="nav-link disabled" aria-disabled="true">About</p>
+          <p className="nav-link " >About</p>
         </li>
       </ul>
-      <form className="d-flex" role="search">
-        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-        <button className="btn btn-outline-success" type="submit">Contact</button>
-      </form>
     </div>
   </div>
 </nav>
+
 </>
   )
 }

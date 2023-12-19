@@ -1,19 +1,68 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 const Cal = () => {
-
+    const [inp,setInp]=useState("")
+    
     const handleClick=(e)=>{
-   console.log(e.target.value)
+        if(e.target.value === "="){
+           CalculateResult();
+        }else if(e.target.value === "CE"){
+            setInp(" ")
+        }else if(e.target.value === "---"){
+            setInp(inp.slice(0,-1))
+          }else{
+            setInp(inp+e.target.value)
+        }
+   
+    
     }
+
+    const CalculateResult=()=>{
+        const res=eval(inp);
+        setInp(res)
+    }
+
+    const keyPress=(e)=>{
+        if(e.key === 'Enter'){
+            CalculateResult();
+        }
+    }
+    const myStyle={
+        "fontFamily": "Press Start 2P"
+    }
+    
+    const[mode,setMode]=useState("☀️ Light Mode")
+  const[btncolor , setBtncolor]=useState("btn-dark")
+ 
+
+  const changeMode=()=>{
+    if(mode === "☀️ Light Mode"){
+      setMode("🌙 Dark Mode")
+      setBtncolor("btn-light")
+      
+    }else{
+      setMode("☀️ Light Mode")
+      setBtncolor("btn-dark")
+    
+    }
+   
+  }
+
+ 
+
     return (
-        <div className='container border border-2 border-dark text-center my-3  w-50'>
+<>
+        <div className='m-2' >
+  <button className={`btn ${btncolor}`} value="Mode" onClick={(e)=>{changeMode(e)}}>{mode}</button>
+  </div>
+        <div className='container border border-2 border-dark text-center my-3  w-50' >
             <div className='my-3 '>
-                <input className='form-control text-end p-3 ' type="text" />
+                <input className='form-control text-end p-3 ' type="text" style={myStyle} value={inp}  onKeyDown={(e)=>{keyPress(e)}}/>
             </div>
             <div className="container ">
                 <div className="row m-1 p-1">
-                    <button className="btn btn-outline-dark col mx-1 ">CE</button>
-                    <button className="btn btn-outline-dark col mx-1 ">---</button>
+                    <button className="btn btn-outline-dark col mx-1 " value="CE" onClick={(e)=>{handleClick(e)}}>CE</button>
+                    <button className="btn btn-outline-dark col mx-1 " value="---" onClick={(e)=>{handleClick(e)}}>---</button>
                     <button className="btn btn-outline-dark col mx-1 " value="/" onClick={(e)=>handleClick(e)}>/</button>
                     <button className="btn btn-outline-dark col mx-1 "value="*" onClick={(e)=>handleClick(e)}>*</button>
                 </div>
@@ -45,6 +94,7 @@ const Cal = () => {
             </div>
 
         </div>
+        </>
     )
 }
 
